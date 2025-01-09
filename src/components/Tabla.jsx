@@ -31,7 +31,7 @@ function Tabla({ users, loading, deleteUser, loadingDelete }) {
         )
       }
       {
-        !loading && users.length === 0 && (
+        !loading && users && users.length === 0 && (
           <h1 className="font-bold text-3xl">No hay usuarios q mostar</h1>
         )
       }
