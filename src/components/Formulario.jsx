@@ -1,6 +1,4 @@
 import React from 'react'
-import { URL } from '../../config';
-import { useState } from 'react';
 
 function Formulario({addUsers, loading}) {
 
