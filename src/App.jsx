@@ -12,7 +12,7 @@ function App() {
     fetch(`${URL}/api/users`).then((res)=>{
       return res.json()
     }).then((res)=>{
-      setUsers(res)
+      setUsers(res.reverse())
     }).catch((err)=>{
       console.log(err)
     }).finally(()=>{
