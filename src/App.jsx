@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { URL } from '../config'
 import Tabla from './components/Tabla'
-import Formulario from './components/formulario'
+import Form from './components/Form'
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -47,7 +47,7 @@ function App() {
 
   return (
     <div className='grid grid-cols-2 w-full p-10 '>
-      <Formulario addUsers={addUsers} loading={loading}/>
+      <Form addUsers={addUsers} loading={loading}/>
       <Tabla loading={loading} users={users}/>
     </div>
   )
