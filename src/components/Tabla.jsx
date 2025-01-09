@@ -1,14 +1,26 @@
 
 
-function Tabla({users, loading}) {
+function Tabla({ users, loading, deleteUser, loadingDelete }) {
   return (
     <div className=' flex flex-col gap-3'>
       {
-        users && users.map((user)=>{
+        loadingDelete && (
+          <span>Eliminando ...</span>
+        )
+      }
+      {
+        users && users.map((user) => {
           return (
-            <div key={user._id} className='bg-neutral-400 rounded-md px-2 py-1 '>
-              <h1 className='text-black font-bold text-xl'>{user.name}</h1>
-              <strong className='text-black'>{user.email}</strong>
+            <div key={user._id} className='bg-neutral-400 rounded-md px-2 py-1 flex justify-between items-center gap-2'>
+              <div>
+                <h1 className='text-black font-bold text-xl'>{user.name}</h1>
+                <strong className='text-black'>{user.email}</strong>
+              </div>
+              <button onClick={() => deleteUser(user._id)} className="bg-red-400 rounded-md w-20 h-10" disabled={loadingDelete}>
+               
+                    Delete
+               
+              </button>
             </div>
           )
         })
@@ -16,6 +28,11 @@ function Tabla({users, loading}) {
       {
         loading && (
           <h1>Loading</h1>
+        )
+      }
+      {
+        !loading && users.length === 0 && (
+          <h1 className="font-bold text-3xl">No hay usuarios q mostar</h1>
         )
       }
     </div>

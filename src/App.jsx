@@ -5,6 +5,7 @@ import Form from './components/Form'
 
 function App() {
   const [loading, setLoading] = useState(false)
+  const [loadingDelete, setLoadingDelete] = useState(false)
   const [users, setUsers] = useState(null)
 
   useEffect(() => {
@@ -44,11 +45,24 @@ function App() {
       setLoading(false)
     })
   }
-
+   const deleteUser = (id)=>{
+    setLoadingDelete(true)
+      fetch(`${URL}/api/users/${id}`, {
+        method: "DELETE"
+      }).then((res)=>{
+       setUsers((prev)=>{
+        return prev.filter((user)=>user._id !== id)
+       })
+      }).catch((err)=>{
+        console.log(err)
+      }).finally(()=>{
+        setLoadingDelete(false)
+      })
+   }
   return (
-    <div className='grid grid-cols-2 w-full p-10 '>
+    <div className='grid grid-cols-2 w-full p-10 h-screen'>
       <Form addUsers={addUsers} loading={loading}/>
-      <Tabla loading={loading} users={users}/>
+      <Tabla loading={loading} users={users} deleteUser={deleteUser} loadingDelete={loadingDelete}/>
     </div>
   )
 }
